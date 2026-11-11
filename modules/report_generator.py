@@ -14,7 +14,7 @@ def generate_csv_report(
     with open(output_path, "w", newline="", encoding="utf-8") as file:
         writer = csv.writer(file)
 
-        writer.writerow(["Type", "Value", "Result", "Date"])
+        writer.writerow(["Type", "Value", "Malicious", "Suspicious", "Harmless", "Undetected"])
 
         for ip in ips:
             stats = ip_results.get(ip) or {}
@@ -28,7 +28,7 @@ def generate_csv_report(
 
         for hash_value in hashes:
 
-            stats = hash_results.get(hash_value or {})
+            stats = hash_results.get(hash_value) or {}
             malicious = stats.get("malicious", 0)
             suspicious = stats.get("suspicious", 0)
             harmless = stats.get("harmless", 0)
