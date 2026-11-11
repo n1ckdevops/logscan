@@ -1,0 +1,63 @@
+2026-11-06T09:00:01+03:00 web-01 nginx_access: 198.51.100.24 - - [06/Nov/2026:09:00:01 +0300] "GET / HTTP/1.1" 200 5421 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64)" rt=0.018
+2026-11-06T09:00:04+03:00 web-01 nginx_access: 198.51.100.24 - - [06/Nov/2026:09:00:04 +0300] "GET /static/app.css HTTP/1.1" 200 14782 "https://app.example.test/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64)" rt=0.004
+2026-11-06T09:00:08+03:00 web-01 nginx_access: 192.0.2.17 - - [06/Nov/2026:09:00:08 +0300] "GET /login HTTP/1.1" 200 2833 "-" "Mozilla/5.0 (X11; Linux x86_64)" rt=0.013
+2026-11-06T09:00:13+03:00 web-01 app[2014]: level=INFO event=login_success username=analyst source_ip=192.0.2.17 session_id=b8c27d
+2026-11-06T09:00:21+03:00 web-01 nginx_access: 203.0.113.45 - - [06/Nov/2026:09:00:21 +0300] "GET /admin HTTP/1.1" 403 153 "-" "curl/8.5.0" rt=0.002
+2026-11-06T09:00:22+03:00 web-01 nginx_access: 203.0.113.45 - - [06/Nov/2026:09:00:22 +0300] "GET /.env HTTP/1.1" 404 162 "-" "curl/8.5.0" rt=0.003
+2026-11-06T09:00:23+03:00 web-01 nginx_access: 203.0.113.45 - - [06/Nov/2026:09:00:23 +0300] "GET /.git/config HTTP/1.1" 404 162 "-" "curl/8.5.0" rt=0.003
+2026-11-06T09:00:24+03:00 web-01 nginx_access: 203.0.113.45 - - [06/Nov/2026:09:00:24 +0300] "GET /wp-login.php HTTP/1.1" 404 162 "-" "curl/8.5.0" rt=0.002
+2026-11-06T09:00:25+03:00 web-01 waf[2122]: level=WARN rule_id=100201 action=block source_ip=203.0.113.45 path=/.env reason="sensitive_file_probe"
+2026-11-06T09:00:27+03:00 web-01 nginx_access: 198.51.100.82 - - [06/Nov/2026:09:00:27 +0300] "GET /api/health HTTP/1.1" 200 27 "-" "monitor/2.0" rt=0.001
+2026-11-06T09:00:30+03:00 web-01 app[2014]: level=INFO event=healthcheck source_ip=198.51.100.82 status=ok
+2026-11-06T09:01:02+03:00 web-01 sshd[2910]: Failed password for invalid user admin from 203.0.113.78 port 50122 ssh2
+2026-11-06T09:01:05+03:00 web-01 sshd[2912]: Failed password for root from 203.0.113.78 port 50124 ssh2
+2026-11-06T09:01:08+03:00 web-01 sshd[2915]: Failed password for invalid user test from 203.0.113.78 port 50128 ssh2
+2026-11-06T09:01:12+03:00 web-01 sshd[2918]: Failed password for invalid user ubuntu from 203.0.113.78 port 50131 ssh2
+2026-11-06T09:01:16+03:00 web-01 sshd[2920]: Connection closed by authenticating user root 203.0.113.78 port 50135 [preauth]
+2026-11-06T09:01:18+03:00 web-01 fail2ban[794]: NOTICE [sshd] Ban 203.0.113.78
+2026-11-06T09:01:30+03:00 web-01 sshd[2930]: Accepted publickey for deploy from 10.20.1.15 port 53644 ssh2: ED25519 SHA256:KEYFINGERPRINTPLACEHOLDER
+2026-11-06T09:01:32+03:00 web-01 sudo[2936]: deploy : TTY=pts/0 ; PWD=/srv/app ; USER=root ; COMMAND=/usr/bin/systemctl status nginx
+2026-11-06T09:01:39+03:00 web-01 app[2014]: level=INFO event=config_loaded config_path=/etc/logscan/app.conf server_ip=10.20.1.10
+2026-11-06T09:02:02+03:00 web-01 nginx_access: 198.51.100.24 - - [06/Nov/2026:09:02:02 +0300] "GET /dashboard HTTP/1.1" 200 7354 "https://app.example.test/login" "Mozilla/5.0 (Windows NT 10.0; Win64; x64)" rt=0.022
+2026-11-06T09:02:14+03:00 web-01 nginx_access: 192.0.2.65 - - [06/Nov/2026:09:02:14 +0300] "POST /login HTTP/1.1" 401 294 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_0)" rt=0.060
+2026-11-06T09:02:15+03:00 web-01 app[2014]: level=WARN event=login_failed username=admin source_ip=192.0.2.65 reason=bad_password
+2026-11-06T09:02:18+03:00 web-01 nginx_access: 192.0.2.65 - - [06/Nov/2026:09:02:18 +0300] "POST /login HTTP/1.1" 401 294 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_0)" rt=0.056
+2026-11-06T09:02:19+03:00 web-01 app[2014]: level=WARN event=login_failed username=admin source_ip=192.0.2.65 reason=bad_password
+2026-11-06T09:02:22+03:00 web-01 nginx_access: 192.0.2.65 - - [06/Nov/2026:09:02:22 +0300] "POST /login HTTP/1.1" 429 211 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_0)" rt=0.003
+2026-11-06T09:02:23+03:00 web-01 app[2014]: level=WARN event=rate_limit source_ip=192.0.2.65 endpoint=/login limit=3/10s
+2026-11-06T09:02:31+03:00 web-01 nginx_access: 203.0.113.45 - - [06/Nov/2026:09:02:31 +0300] "GET /api/v1/users HTTP/1.1" 401 87 "-" "python-requests/2.32.3" rt=0.003
+2026-11-06T09:02:34+03:00 web-01 waf[2122]: level=WARN rule_id=100309 action=block source_ip=203.0.113.45 path=/api/v1/users reason="unauthorized_api_probe"
+2026-11-06T09:02:42+03:00 web-01 nginx_access: 198.51.100.82 - - [06/Nov/2026:09:02:42 +0300] "GET /api/health HTTP/1.1" 200 27 "-" "monitor/2.0" rt=0.002
+2026-11-06T09:03:01+03:00 web-01 endpoint-agent[4410]: level=INFO event=file_created host=web-01 user=www-data path=/var/tmp/cache_update.bin size=8192 source_ip=10.20.1.10
+2026-11-06T09:03:02+03:00 web-01 endpoint-agent[4410]: level=WARN event=untrusted_file path=/var/tmp/cache_update.bin sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 action=quarantine_pending
+2026-11-06T09:03:03+03:00 web-01 endpoint-agent[4410]: level=INFO event=hash_lookup sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 status=pending
+2026-11-06T09:03:06+03:00 web-01 app[2014]: level=WARN event=upload_rejected source_ip=203.0.113.112 filename=invoice_update.exe reason=extension_blocked
+2026-11-06T09:03:07+03:00 web-01 endpoint-agent[4410]: level=INFO event=file_created path=/srv/uploads/invoice_update.exe size=4096 source_ip=203.0.113.112
+2026-11-06T09:03:08+03:00 web-01 endpoint-agent[4410]: level=WARN event=file_scan path=/srv/uploads/invoice_update.exe sha256=2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824 action=quarantined detection=policy_block
+2026-11-06T09:03:11+03:00 web-01 endpoint-agent[4410]: level=INFO event=quarantine_complete sha256=2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824 path=/srv/uploads/invoice_update.exe
+2026-11-06T09:03:17+03:00 web-01 nginx_access: 203.0.113.112 - - [06/Nov/2026:09:03:17 +0300] "POST /api/upload HTTP/1.1" 415 153 "-" "python-requests/2.32.3" rt=0.011
+2026-11-06T09:03:27+03:00 web-01 nginx_access: 192.0.2.17 - - [06/Nov/2026:09:03:27 +0300] "GET /api/v1/profile HTTP/1.1" 200 778 "https://app.example.test/dashboard" "Mozilla/5.0 (X11; Linux x86_64)" rt=0.014
+2026-11-06T09:03:41+03:00 web-01 systemd[1]: Started Daily temporary file cleanup.
+2026-11-06T09:03:43+03:00 web-01 cleanup[4533]: level=INFO event=temp_cleanup removed_files=12 freed_bytes=64329
+2026-11-06T09:04:03+03:00 web-01 sshd[2991]: Failed password for invalid user guest from 192.0.2.200 port 59222 ssh2
+2026-11-06T09:04:06+03:00 web-01 sshd[2993]: Failed password for invalid user oracle from 192.0.2.200 port 59225 ssh2
+2026-11-06T09:04:12+03:00 web-01 sshd[2997]: Disconnected from invalid user oracle 192.0.2.200 port 59225 [preauth]
+2026-11-06T09:04:21+03:00 web-01 nginx_access: 203.0.113.45 - - [06/Nov/2026:09:04:21 +0300] "GET /server-status HTTP/1.1" 403 153 "-" "curl/8.5.0" rt=0.003
+2026-11-06T09:04:24+03:00 web-01 nginx_access: 203.0.113.45 - - [06/Nov/2026:09:04:24 +0300] "GET /actuator/health HTTP/1.1" 404 162 "-" "curl/8.5.0" rt=0.002
+2026-11-06T09:04:29+03:00 web-01 nginx_access: 198.51.100.24 - - [06/Nov/2026:09:04:29 +0300] "GET /reports HTTP/1.1" 200 5144 "https://app.example.test/dashboard" "Mozilla/5.0 (Windows NT 10.0; Win64; x64)" rt=0.027
+2026-11-06T09:04:37+03:00 web-01 app[2014]: level=ERROR event=db_timeout backend_ip=10.20.1.25 duration_ms=1500 query=SELECT_REPORTS
+2026-11-06T09:04:38+03:00 web-01 nginx_access: 198.51.100.24 - - [06/Nov/2026:09:04:38 +0300] "GET /reports/export HTTP/1.1" 500 216 "https://app.example.test/reports" "Mozilla/5.0 (Windows NT 10.0; Win64; x64)" rt=1.501
+2026-11-06T09:04:44+03:00 web-01 db-pool[2014]: level=INFO event=connection_restored backend_ip=10.20.1.25
+2026-11-06T09:05:01+03:00 web-01 endpoint-agent[4410]: level=INFO event=file_scan path=/usr/local/bin/backup-helper sha256=ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad status=no_local_detection
+2026-11-06T09:05:06+03:00 web-01 backup[4601]: level=INFO event=backup_complete destination=/mnt/backups/app_2026-11-06.tar.gz files=283
+2026-11-06T09:05:10+03:00 web-01 nginx_access: 198.51.100.82 - - [06/Nov/2026:09:05:10 +0300] "GET /api/health HTTP/1.1" 200 27 "-" "monitor/2.0" rt=0.001
+2026-11-06T09:05:18+03:00 web-01 auth[4701]: level=INFO event=service_token_refresh source_ip=127.0.0.1 client_id=metrics-agent
+2026-11-06T09:05:27+03:00 web-01 endpoint-agent[4410]: level=INFO event=hash_lookup sha256=ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad status=pending
+2026-11-06T09:05:31+03:00 web-01 waf[2122]: level=INFO action=monitor source_ip=198.51.100.24 path=/reports rule_id=0
+2026-11-06T09:05:39+03:00 web-01 nginx_access: 192.0.2.17 - - [06/Nov/2026:09:05:39 +0300] "POST /logout HTTP/1.1" 204 0 "https://app.example.test/dashboard" "Mozilla/5.0 (X11; Linux x86_64)" rt=0.008
+2026-11-06T09:05:40+03:00 web-01 app[2014]: level=INFO event=logout_success username=analyst source_ip=192.0.2.17
+2026-11-06T09:05:47+03:00 web-01 nginx_access: 192.0.2.17 - - [06/Nov/2026:09:05:47 +0300] "GET /login HTTP/1.1" 200 2833 "-" "Mozilla/5.0 (X11; Linux x86_64)" rt=0.012
+
+2026-11-06 12:00:00 INFO Connection from 8.8.8.8
+2026-11-06 12:01:00 WARNING Connection from 999.999.999.999
+2026-11-06 12:02:00 ERROR Connection from 192.168.1.300
